@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Games</title>
+    <title>Astronomia</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
+            background-color: #000;
+            color: #fff;
         }
 
         header {
@@ -21,32 +22,27 @@
 
         header h1 {
             margin: 0;
+            font-size: 36px;
         }
 
         main {
             padding: 20px;
         }
 
-        .game-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
+        .section {
+            opacity: 0;
+            transition: opacity 1s;
         }
 
-        .game {
-            width: 300px;
-            margin-bottom: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        .visible {
+            opacity: 1;
+        }
+
+        .section-content {
             padding: 20px;
-        }
-
-        .game h2 {
-            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
 
         footer {
@@ -63,31 +59,81 @@
 </head>
 <body>
     <header>
-        <h1>Mini Games</h1>
+        <h1>Astronomia</h1>
     </header>
     <main>
-        <div class="game-container">
-            <div class="game">
-                <h2>Jogo da Cobrinha</h2>
-                <canvas id="snakeCanvas" width="300" height="300"></canvas>
-                <script src="snake.js"></script>
+        <div class="section visible" id="section1">
+            <div class="section-content">
+                <h2>Explorando o Universo</h2>
+                <p>Descubra o fascinante mundo da astronomia e explore os mistérios do universo.</p>
+                <button onclick="nextSection()">Próximo</button>
             </div>
-            <div class="game">
-                <h2>Jogo da Forca</h2>
-                <button id="startHangman">Iniciar Jogo</button>
-                <div id="hangmanOutput"></div>
-                <div id="hangmanInput"></div>
-                <script src="hangman.js"></script>
+        </div>
+        <div class="section" id="section2">
+            <div class="section-content">
+                <h2>Sistema Solar</h2>
+                <p>Conheça os planetas, luas, cometas e asteroides que compõem nosso sistema solar.</p>
+                <button onclick="nextSection()">Próximo</button>
             </div>
-            <div class="game">
-                <h2>Jogo da Memória</h2>
-                <div id="memoryGame"></div>
-                <script src="memory.js"></script>
+        </div>
+        <div class="section" id="section3">
+            <div class="section-content">
+                <h2>Estrelas e Galáxias</h2>
+                <p>Explore as estrelas, constelações, nebulosas e galáxias que pontilham o céu noturno.</p>
+                <button onclick="nextSection()">Próximo</button>
+            </div>
+        </div>
+        <div class="section" id="section4">
+            <div class="section-content">
+                <h2>Telescópios e Observatórios</h2>
+                <p>Descubra como os telescópios e observatórios nos ajudam a explorar o cosmos.</p>
+                <button onclick="nextSection()">Próximo</button>
+            </div>
+        </div>
+        <div class="section" id="section5">
+            <div class="section-content">
+                <h2>Exploração Espacial</h2>
+                <p>Acompanhe as missões espaciais e descubra os mistérios do espaço profundo.</p>
+                <button onclick="nextSection()">Próximo</button>
+            </div>
+        </div>
+        <div class="section" id="section6">
+            <div class="section-content">
+                <h2>Fim</h2>
+                <p>Obrigado por explorar o universo conosco!</p>
+                <button onclick="restart()">Recomeçar</button>
             </div>
         </div>
     </main>
     <footer>
-        <p>&copy; 2024 Mini Games. Todos os direitos reservados.</p>
+        <p>&copy; 2024 Astronomia. Todos os direitos reservados.</p>
     </footer>
+
+    <script>
+        let currentSection = 1;
+        const sections = document.querySelectorAll('.section');
+
+        function showSection(sectionNumber) {
+            sections.forEach(section => {
+                section.classList.remove('visible');
+            });
+
+            document.getElementById(`section${sectionNumber}`).classList.add('visible');
+        }
+
+        function nextSection() {
+            if (currentSection < sections.length) {
+                currentSection++;
+                showSection(currentSection);
+            }
+        }
+
+        function restart() {
+            currentSection = 1;
+            showSection(currentSection);
+        }
+
+        showSection(currentSection);
+    </script>
 </body>
 </html>
